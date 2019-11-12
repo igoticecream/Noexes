@@ -1,0 +1,4 @@
+rootProject.name = 'noexs'
+
+include ':noexs-app'
+include ':noexs-utils'

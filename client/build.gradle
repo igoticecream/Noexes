@@ -1,0 +1,18 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+subprojects {
+    configure(project) {
+        group = "me.mdbell"
+        version = "1.1.2"
+        description = "A graphical remote debugger for the Nintendo Switch"
+    }
+}
+
+wrapper {
+    gradleVersion = "5.6"
+    distributionType = Wrapper.DistributionType.ALL
+}

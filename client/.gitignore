@@ -1,2 +1,10 @@
+## IDEA
+.idea/
+
+## Gradle
+.gradle/
+build/
 out/
-.idea/workspace.xml
+
+## App
+tmp/
