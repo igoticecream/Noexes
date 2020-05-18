@@ -7,7 +7,7 @@ plugins {
 }
 
 configure(project) {
-    mainClassName = "$moduleName/me.mdbell.noexs.ui.NoexsApplication"
+    mainClassName = "$moduleName/me.mdbell.noexs.Main"
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -39,11 +39,31 @@ jar {
 
     manifest {
         attributes(
-            'Main-Class': project.mainClassName,
+            'Main-Class': "me.mdbell.noexs.Main",
             'Implementation-Title': project.name,
             'Implementation-Vendor': project.group,
             'Implementation-Version': project.version,
             'Class-Path': configurations.runtime.collect { it.getName() }.join(' ')
         )
     }
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+}
+
+task fatJar(type: Jar) {
+    manifest.from jar.manifest
+
+    from(configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }) {
+        exclude 'META-INF/rxjava.properties'
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+
+    with jar
+}
+
+artifacts {
+    archives fatJar
 }
