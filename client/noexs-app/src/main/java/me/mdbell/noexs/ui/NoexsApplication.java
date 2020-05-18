@@ -28,8 +28,12 @@ public class NoexsApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("/views/Main.fxml")));
         Parent root = loader.load();
+
+        Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
+        scene.getStylesheets().add(getClass().getResource("/fonts/droid-sans-mono.css").toExternalForm());
+
         stage.setResizable(false);
-        stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
+        stage.setScene(scene);
         MainController c = loader.getController();
         c.setStage(stage);
         c.setTitle(null);
