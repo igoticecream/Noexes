@@ -8,6 +8,7 @@ plugins {
 
 configure(project) {
     mainClassName = "$moduleName/me.mdbell.noexs.Main"
+    archivesBaseName = "noexs"
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -29,14 +30,12 @@ javafx {
 jlink {
     options = ["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"]
     launcher {
-        name = "noexs"
+        name = project.archivesBaseName
     }
     imageZip = file("$buildDir/image-zip/noexs.zip")
 }
 
 jar {
-    archiveFileName = 'noexs-app.jar'
-
     manifest {
         attributes(
             'Main-Class': "me.mdbell.noexs.Main",
@@ -46,13 +45,10 @@ jar {
             'Class-Path': configurations.runtime.collect { it.getName() }.join(' ')
         )
     }
-//    from {
-//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-//    }
 }
 
 task fatJar(type: Jar) {
-    manifest.from jar.manifest
+    classifier 'all'
 
     from(configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }) {
         exclude 'META-INF/rxjava.properties'
@@ -62,6 +58,7 @@ task fatJar(type: Jar) {
     }
 
     with jar
+    manifest.from jar.manifest
 }
 
 artifacts {
