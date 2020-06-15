@@ -5,8 +5,8 @@ plugins {
 }
 
 configure(project) {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_14
 }
 
 dependencies {
@@ -14,7 +14,7 @@ dependencies {
 }
 
 javafx {
-    version = "11.0.2"
+    version = "14.0.1"
     modules = ["javafx.base", "javafx.graphics", "javafx.controls", "javafx.fxml"]
 }
 
