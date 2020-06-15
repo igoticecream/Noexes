@@ -8,6 +8,7 @@ extern "C" {
 
 	u32 __nx_applet_type = AppletType_None;
 	u32 __nx_fs_num_sessions = 1;
+	u32 __nx_fsdev_direntry_cache_size = 1;
 
 	//#define INNER_HEAP_SIZE 0x834000 // Arbitrary heap size. 
 	#define INNER_HEAP_SIZE 0x41A000 // Reduced heap size. 
