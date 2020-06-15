@@ -3,7 +3,7 @@ plugins {
     id "idea"
     id "application"
     id "org.openjfx.javafxplugin" version "0.0.8"
-    id "org.beryx.jlink" version "2.12.0"
+    id "org.beryx.jlink" version "2.20.0"
 }
 
 configure(project) {
